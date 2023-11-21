@@ -1,0 +1,80 @@
+Sample Input -
+4
+3 2 1 3
+Sample Output 2
+
+
+
+int birthdayCakeCandles(vector<int> candles) {
+    
+    map<int,int> mp;
+    for(int i=0;i<candles.size();i++)
+    {
+        if(mp.find(candles[i]) == mp.end() )
+        {
+            mp[candles[i]] = 1;
+        }
+        else
+        {
+            mp[candles[i]]++;
+        }
+    }
+    vector<int> a;
+    for(auto it : mp)
+    {
+        a.push_back(it.first);
+    }
+    int key = *max_element(a.begin(),a.end());
+    if(mp.count(key) > 0)
+    {
+        return mp.at(key);
+    }
+    else {
+        return 0;
+    }
+    
+
+}
+
+
+
+<- -------------------------------------------------------------------------------- ->
+
+vector<int> climbingLeaderboard(vector<int> ranked, vector<int> player) {
+    
+    vector<int> v;
+
+    //make vectors elements unique
+    unordered_set<int> s(ranked.begin(),ranked.end());
+    ranked.assign(s.begin(),s.end());
+    
+        sort(ranked.begin(),ranked.end(),greater<int>());
+        
+    map<int,int> mp;
+    int count=0;
+    for(int i=0;i<ranked.size();i++)
+    {
+        count++;
+        if(mp.find(ranked[i]) == mp.end())
+        {
+            mp[ranked[i]] = count;
+        }
+    }
+    map<int,int>::iterator itr;
+    for(itr=mp.begin();itr!=mp.end();itr++)
+    {
+        cout<<itr->first<<"  "<<itr->second<<endl;
+    }
+    for(int i=0;i<player.size();i++)
+    {
+        for(auto m:mp)
+        {
+            if(player[i]==m.first)
+            {
+                v.push_back(m.first);
+            }
+            else if(player[i]<m.)
+        }
+        
+    }
+    return ranked;

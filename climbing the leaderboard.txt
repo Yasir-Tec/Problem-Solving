@@ -1,0 +1,35 @@
+vector<int> climbingLeaderboard(vector<int> ranked, vector<int> player) {
+    
+ 
+    vector<int> v;
+    //make vectors elements unique
+    unordered_set<int> s(ranked.begin(),ranked.end());
+    // assign unique elements back to vector
+    ranked.assign(s.begin(),s.end());
+    //sort the ranked vector in descending order
+    sort(ranked.begin(),ranked.end(),greater<int>());
+    for(int i=0;i<player.size();i++)
+    {
+        //use binary search to find the index of player's score in ranked vector
+        int index = lower_bound(ranked.begin(), ranked.end(), player[i], greater<int>()) - ranked.begin();
+        //if match of ele bet player and ranked push index to vector
+        v.push_back(index+1);
+    }
+    return v;
+}
+
+// lower_bound -> lower_bound finds the first element that is not greater than the specified value.
+Note that the greater<int>() comparison function is used to sort the vector in descending order, so lower_bound finds the first element that is not greater than the specified value. If the vector was sorted in ascending order, the default less<int>() comparison function would be used, and lower_bound would find the first element that is not less than the specified value.
+
+
+-------------------------------------------------------------
+another logic --->
+
+
+ ranked.insert(ranked.begin()+i,player[i]);
+        sort(ranked.begin(),ranked.end(),greater<int>());
+        auto res = find(ranked.begin(), ranked.end(), player[i]);
+        if (res != ranked.end())
+        {
+            v.push_back(res - ranked.begin() + 1);
+        }
